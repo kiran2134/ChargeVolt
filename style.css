@@ -1,6 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    
+    background-color: aliceblue;
+    
+    font-family: 'Quicksand', sans-serif;
+}
+.header{
+    background: url(assests/blob-scene-haikei.svg);
+    /* background: url(assests/blob-haikei.svg); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+}
+
+.nav-content{
+    /* border: 2px solid; */
+    height: 10vh;
+    color: rgb(3, 207, 98);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 30px;
+    /* border-bottom: 2px solid; */
+    /* box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.500); */
+}
+.list li{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.list li ul{
+    text-decoration: none;
+    color: #5d5f5d;
+}
+.list li ul a{
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: 0px 10px;
+    margin: 0px  30px;
+    transition: 1s;
+}
+.list li ul a:hover{
+    color: green;
+    transition: 1s;
+}
+.logo{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.container{
+    /* background: url(assests/blob-scene-haikei.svg); */
+    /* background: url(assests/blob-haikei.svg); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    height: 90vh;
+    padding: 5vh;
+    /* border: 2px solid; */
+}
+.content{
+    /* background: url(assests/blob-haikei.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover; */
+    width: 90vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; 
+    padding: 5vh;
+}
+.title{
+   
+    font-size: 3rem;
+    color: #5d5f5d;
+}
+.title h1:nth-child(1){
+    color: rgb(55, 240, 10);
+}
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    margin-top: 10px;
+}
+.login{
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1rem;
+    font-weight: 700;
+    /* width: 8vw; */
+    padding: 15px 15px;
+    background-color: rgb(43, 155, 16) ;
+    color: white;
+    cursor: pointer;
+}
+.box p{
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-left: 20px;
+}
+a{
+    /* text-decoration: none; */
+    color: #5d5f5d;
+}
+img{
+    width: 30vw;
+}
+
 
