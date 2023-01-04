@@ -10,9 +10,19 @@ body{
     background-color: aliceblue;
     
     font-family: 'Quicksand', sans-serif;
+     background-color: #ffffff;
+    background-image: url("assests/floating-cogs.svg"); 
 }
 .header{
-    background: url(assests/blob-scene-haikei.svg);
+    background: url(assests/blob-scene-haikei2.svg);
+    /* background: url(assests/blob-haikei.svg); */
+    background-repeat: repeat;
+    background-position: center;
+     background-size:cover;
+    
+}
+.header2{
+    background: url(assests/blob-scene-haikei1.svg);
     /* background: url(assests/blob-haikei.svg); */
     background-repeat: no-repeat;
     background-position: center;
@@ -22,6 +32,10 @@ body{
 .nav-content{
     /* border: 2px solid; */
     height: 10vh;
+    background-color: rgba(240, 248, 255, 0.200);
+    backdrop-filter: blur(10px) saturate(200%) contrast(55%) brightness(140%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%) contrast(55%) brightness(140%);
+  box-shadow: 2px 2px 10px rgba(128, 128, 128, 0.100);
     color: rgb(3, 207, 98);
     display: flex;
     align-items: center;
@@ -45,15 +59,23 @@ body{
     font-weight: 700;
     padding: 0px 10px;
     margin: 0px  30px;
-    transition: 1s;
+    transition: 0.3s;
 }
 .list li ul a:hover{
-    color: green;
-    transition: 1s;
+    color: rgb(55, 240, 10);
+    transition: 0.3s;
 }
 .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 2.5rem;
     font-weight: 700;
+    margin-left: 20px;
+}
+.logo img{
+    width: 2vw;
+    margin: 10px;
 }
 .container{
     display: flex;
@@ -71,8 +93,10 @@ body{
 .title{ 
     font-size: 3rem;
     color: #5d5f5d;
+    text-shadow: 2px 2px 1px  rgb(49, 51, 50);
 }
 .title h1:nth-child(1){
+    text-shadow: 2px 2px 1px  rgb(6, 198, 108);
     color: rgb(55, 240, 10);
 }
 .box{
@@ -98,6 +122,7 @@ body{
     font-size: 1.2rem;
     font-weight: 900;
     margin-left: 20px;
+    text-shadow: none;
 }
 a{
     /* text-decoration: none; */
