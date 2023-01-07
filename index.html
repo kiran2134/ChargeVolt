@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ev Dash</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
   </head>
   <body>
     <section class="header">
       <nav>
         <div class="nav-content">
             <div class="logo">
-                <h1>Grenify</h1>
+                <h1>Greenify</h1>
                 <img src="assests/icons8-natural-food-48.png" alt="">
             </div>
             <div class="list">
@@ -32,16 +33,37 @@
             <h1>Fast and Reliable</h1>
             <h1>Environment Friendly.</h1>
             <div class="box">
-                <button class="login">Get Started</button>
-                <p>Already a User?<a href=""> Sign in.</a></p>
+                <button class="login" onclick="visible()">Get Started</button>
+                <p>Already a User?<a href="https://www.youtube.com/"> Sign in.</a></p>
             </div>
           </div>
           <div class="img">
             <img src="assests/pngwing.com.png" alt="" />
           </div>
+
+
+          
+        </div>
+        <div class="login-form">
+          <div class="form-content">
+            <form action="" class="form">
+              <div class="flogo">
+                <h1>Greenify</h1>
+                <h1>Login</h1>
+              </div>
+              <h1>Name</h1>
+              <input type="text" name="name">
+              <h1>Email</h1>
+              <input type="email" name="email">
+              <h1>Mobile No</h1>
+              <input type="tel" maxlength="10" name="email">
+              <h1>Password</h1>
+              <input type="password" name="password" id="password">
+              <button type="submit" name="submit">Submit</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
-    <section class="main"></section>
   </body>
 </html>
