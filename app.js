@@ -3,18 +3,29 @@ const observer = new IntersectionObserver(entries => {
     const square = entry.target.querySelector('.title');
 
     if (entry.isIntersecting) {
-      square.classList.add('blu');
+      square.classList.add('fade');
       return; // if we added the class, exit the function
     }
 
     // We're not intersecting, so remove the class!
-    square.classList.remove('blu');
+    square.classList.remove('fade');
   });
 });
 
 observer.observe(document.querySelector('.header'));
 
+
+
+
 function visible(){
-document.querySelector('.login-form').classList.toggle("visible")
-document.querySelector('.content').classList.toggle("blur")
+  document.querySelector('.login-form').classList.toggle("visible")
+  document.querySelector('.content').classList.toggle("blur")
+  preventDeafault();
+}
+function toggleDark(){
+  document.querySelector('.light').classList.toggle("dark")
+  // document.querySelector('.box-content').classList.toggle("dark")
+  // document.querySelector('.light')
+
+  preventDeafault();
 }

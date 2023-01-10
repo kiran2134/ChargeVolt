@@ -85,6 +85,7 @@ body{
     /* border: 2px solid; */
 }
 .content{
+    transition: 1s;
     width: 90vw;
     display: flex;
     justify-content: space-evenly;
@@ -181,6 +182,58 @@ a {
   background-color: #ffffff;
   background-image: url("assests/floating-cogs.svg");
 }
+.form {
+    filter: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  background: url(assests/blob.svg);
+  /* background: url(assests/blob-haikei.svg); */
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+
+  box-shadow: 2px 2px 40px rgba(128, 128, 128, 0.700);
+  /* border: 2px solid; */
+  border-radius: 20px;
+  padding: 50px;
+}
+
+.iconc{
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+.iconc button{
+  background-color: none;
+}
+.iconc img{
+  width: 1.2vw;
+}
+.submit{
+  outline: none;
+  border: none;
+  margin: 5px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 10px 15px;
+  background-color: rgb(63, 252, 0);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 2px 2px 20px rgba(128, 128, 128, 0.5);
+  transition: 1s;
+}
+.iconc button{
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+.submit:hover {
+  background-color: darkgreen;
+  color: white;
+  transition: 1s;
+}
 input {
   margin: 10px 0px;
   outline: none;
@@ -206,42 +259,7 @@ input {
   text-shadow: 2px 2px 1px rgb(6, 198, 108);
   color: white;
 }
-.form {
-    filter: none;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-  background: url(assests/blob.svg);
-  /* background: url(assests/blob-haikei.svg); */
-  background-repeat: repeat;
-  background-position: center;
-  background-size: cover;
 
-  box-shadow: 2px 2px 40px rgba(128, 128, 128, 0.700);
-  /* border: 2px solid; */
-  border-radius: 20px;
-  padding: 50px;
-}
-
-.form button {
-  outline: none;
-  border: none;
-  margin: 5px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  padding: 10px 15px;
-  background-color: rgb(63, 252, 0);
-  color: white;
-  border-radius: 10px;
-  box-shadow: 2px 2px 20px rgba(128, 128, 128, 0.5);
-  transition: 1s;
-}
-.form button:hover {
-  background-color: darkgreen;
-  color: white;
-  transition: 1s;
-}
 .flogo {
   padding: 20px 0px;
 }
@@ -254,6 +272,14 @@ input {
     transition: 1s;
   }
 }
+@keyframes fade {
+    0% {
+      /* color: #5d5f5d; */
+      filter: blur(5px);
+      transform: translateX(-30%) scale(1.1);
+      transition: 1s;
+    }
+  }
 .visible {
   animation: glass 1s both;
   visibility: visible;
@@ -264,6 +290,9 @@ input {
 .blur{
     filter: blur(10px);
     transition: 1s;
+}
+.fade{
+    animation: fade 1s both;
 }
 
 
