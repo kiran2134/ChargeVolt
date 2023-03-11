@@ -16,4 +16,5 @@ int main(){
         cout<<" = ";
         cout<<total<<" "<<endl;
     }
+    return 0;
 }
