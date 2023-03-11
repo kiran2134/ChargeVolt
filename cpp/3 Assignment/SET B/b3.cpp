@@ -38,5 +38,4 @@ int main()
     j2.display();
     cout << "\n Count is : " << j2.showcount();
     return 0;
-    return (0);
 }
