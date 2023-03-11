@@ -1,40 +1,32 @@
 #include<iostream>
 using namespace std;
-class Cylinder{
-    private:
-        int radius, height;
-        float area1;
-    public:
-        void aradius(){
-            cout<< endl <<"Enter Radius";
-            cin>>radius;
-        }
-        void aheight(){
-            cout<< endl <<"Enter Height" << endl;
-            cin>>height;
-        }
-        void volume(){
-            float pi = 3.14;
-            int r = radius , h = height;
-            float volume = pi * (r * r) * h;  
-            cout<< endl <<volume << endl ;
-        }
-        void area(){
-            float pi = 3.14;
-            int r = radius , h = height;
-            area1 = 2 * pi * r * h + 2 * pi * r * r;
-            cout<< endl <<area1;    
-        }
+class Cylinder
+{
+   private:   
+   float radius,height;
+   float volumn,area;
+   public:
+    void accept()
+    { 
+   cout<<"Enter the radius:";
+   cin>>radius;
+   cout<<"Enter the height:";
+   cin>>height;
+}
+   void display()
+   {
+   area=2*(3.14*radius*height)+2*(3.14*radius*radius);
+   volumn=3.14*radius*radius*height;
+   cout<<"Area of a cylinder:"<<area<<endl;
+   cout<<"Volumn of a cylinder:"<<volumn<<endl;
+  }
 };
-int main(){
-    Cylinder Obj1, Obj2;
-    Obj1.aradius();
-    Obj1.aheight();
-    Obj1.volume();
-    Obj1.area();    
-    Obj2.aradius();
-    Obj2.aheight();
-    Obj2.volume();
-    Obj2.area();    
-    return 0;
+int main()
+{ 
+    Cylinder obj1,obj2;
+    obj1.accept();
+    obj1.display();
+    obj2.accept();
+    obj2.display();
+    return 0;  
 }

@@ -1,36 +1,31 @@
 #include<iostream>
 using namespace std;
 class Distance{
-        public:
-        int feet , inches;
+    private:
+      int feet;
+      int inches;
     public:
-        void accept(){
-            cout<< endl <<"Enter inches";
-            cin>>inches;
-            cout<< endl <<"Enter feet";
-            cin>>feet;
-        }
-        void display(){
-            cout<< endl <<"Feet : "<<feet<<" Inches : "<<inches;
-        }
-        void sum(){
-            int sum = feet + inches;
-            cout<< endl <<"Sum is : "<<sum;
-        }
+    void set_distance(){
+	    cout<<"Enter feet:";
+	    cin>>feet;
+	    cout<<"Enter inches:";
+	    cin>>inches;
+    }
+    void get_distance(){
+	    cout<<"Distance in feet ="<<feet<<endl<<"Distance in inches="<<inches;
+    }
+    void add(Distance d1,Distance d2){
+        feet=d1.feet+d2.feet;
+       inches=d1.inches+d2.inches;
+       feet=feet+(inches/12);
+       inches=inches%12;
+    }
 };
 int main(){
-    Distance Obj1, Obj2;
-    Obj1.accept();
-    Obj1.display();
-    // Obj1.sum();
-
-    Obj2.accept();
-    Obj2.display();
-    // Obj2.sum();
-
-    int feetsum  = Obj1.feet + Obj2.feet;
-    int inchessum  = Obj1.inches + Obj2.inches;
-    cout<< endl << "Sum of feet is : " <<feetsum;
-    cout<< endl << "Sum of inches is : " <<inchessum;
-    return 0;
+   Distance d1,d2,d3;
+   d1.set_distance();
+   d2.set_distance();
+   d3.add(d1,d2);
+   d3.get_distance();
+   return 0;
 }

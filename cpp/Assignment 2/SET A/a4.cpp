@@ -1,49 +1,54 @@
 #include <iostream>
-#include<string.h>
 using namespace std;
-class String{
-private:
-    char string1[100] = "Hello ";
-    char string2[100] = "Hel ";
+#include <string.h>
+class Cstring
+{
+    char s[10];
+    int l;
+
 public:
-    char str_length(char string[]){
-
-        int i = 0;
-        do{
-            i++;
-        }while(string[i] != '\0');
-
-        cout << i;
-    }
-    void str_Concat(){
-        char newString[100];
-        int i;
-
-        for ( i = 0; string1[i] != '\0'; i++)
-            cout<<i;
-        for (int j = 0; string2[j] != '\0'; i++ ,j++){
-            string1[i]=string2[j];
-        }
-        
-        cout<< endl << string1;
-    }   
-    void str_reverse(){
-         strrev(string1);
-         cout<<string1;
-    }
-    void str_compare(){
-        int a = strcmp(string1, string2);
-        cout<<a;
-
-    }
+    void accept();
+    void display();
+    void findl();
+    void concate(Cstring s1, Cstring s2);
+    void compare(Cstring s1, Cstring s2);
 };
-int main(){
-    // char string1[] = {"Hello fellsa kay mag"};
-    String s1;
-    // s1.str_length(string1);
-    // s1.str_Concat();
-    // s1.str_reverse();
-    s1.str_compare();
-
-    return 0 ;
+void Cstring::accept()
+{
+    cout << "\nEnter the string:";
+    cin >> s;
+}
+void Cstring::display()
+{
+    cout << "\nString:" << s;
+}
+void Cstring::findl()
+{
+    l = strlen(s);
+    cout << "\nString length:" << l;
+}
+void Cstring::concate(Cstring s1, Cstring s2)
+{
+    char d[20];
+    strcpy(d, s1.s);
+    strcat(d, s2.s);
+    cout << "\nConcatination:" << d;
+}
+void Cstring::compare(Cstring s1, Cstring s2)
+{
+    int i, n;
+    n = strcmp(s1.s, s2.s);
+    cout << "\nString compare:" << n;
+}
+int main()
+{
+    Cstring s1, s2, s3;
+    s1.accept();
+    s1.display();
+    s1.findl();
+    s2.accept();
+    s2.display();
+    s3.compare(s1, s2);
+    s3.concate(s1, s2);
+    return 0;
 }
