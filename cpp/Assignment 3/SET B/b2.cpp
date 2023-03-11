@@ -1,68 +1,48 @@
-// Write a C++ program to create two classes Rectangle1 and Rectangle2. Compare area of both the
-// rectangles using friend function
-
 #include <iostream>
 using namespace std;
-
-class Rectangle2;
-class Rectangle1
+class rectangle2;
+class rectangle1
 {
-    int length, breadth, area;
+    int l1, b1;
 
 public:
-    Rectangle1()                  //Constructor
+    void accept()
     {
-        length = 10;
-        breadth = 5;
+        cout << "enter length and breadth\n";
+        cin >> l1 >> b1;
     }
-
-    void rect_area()
-    {
-        area = length * breadth;
-    }
-    friend void compare(Rectangle1 Obj1, Rectangle2 Obj2);
-    // ~Rectangle1();
+    friend void compare(rectangle1, rectangle2);
 };
-class Rectangle2
+class rectangle2
 {
-    int length, breadth, area;
+    int l2, b2;
 
 public:
-    Rectangle2()                  //Constructor
+    void input()
     {
-        length = 8;
-        breadth = 5;
-    }
-    void rect_area()
-    {
-        area = length * breadth;
-    }
-    friend void compare(Rectangle1 Obj1, Rectangle2 Obj2);
-    // ~Rectangle2();
-};
 
-void compare(Rectangle1 Obj1, Rectangle2 Obj2)
+        cout << "enter length and breadth\n";
+        cin >> l2 >> b2;
+    }
+    friend void compare(rectangle1, rectangle2);
+};
+void compare(rectangle1 x, rectangle2 y)
 {
-    Obj1.rect_area();
-    Obj2.rect_area();
-    cout << Obj1.area << endl
-         << Obj2.area << endl
-         << endl;
-    Obj1.area > Obj2.area ? cout << "Rectangle 1 is bigger" : cout << "Rectangle 2 is bigger";
+    if (x.l1 * x.b1 > y.l2 * y.b2)
+    {
+        cout << "rectagle 1 is bigger than 2\n";
+    }
+    else
+    {
+        cout << "rectagle 2 is bigger than 1\n";
+    }
 }
-
-// Rectangle1 :: ~Rectangle1(){
-//     cout<< endl <<"Rectangle 1 Destructured" << endl;
-// }
-// Rectangle2 :: ~Rectangle2(){
-//     cout<< endl <<"Rectangle 2 Destructured" << endl;
-// }
-
 int main()
 {
-    Rectangle1 Obj1;
-    Rectangle2 Obj2;
-
-    compare(Obj1, Obj2);
+    rectangle1 obj;
+    rectangle2 obj1;
+    obj.accept();
+    obj1.input();
+    compare(obj, obj1);
     return 0;
 }

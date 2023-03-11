@@ -1,25 +1,40 @@
 #include<iostream>
 using namespace std;
-class Number2;
-class Number1 {
-    int num1;
+class B;
+class A
+{ 
+    int x;
     public:
-        Number1() {num1 =100;}
-        friend void subtract(Number1 Obj1 , Number2 Obj2 );
+    void input()
+    {   
+    cout<<"enter x\n";
+    cin>>x;
+    }
+    friend int substract(A ,B);
 };
-
-class Number2 {
-    int num2;
+class B
+{
+    int y;
     public:
-        Number2() {num2 =50;}
-        friend void subtract(Number1 , Number2 );
+    void input1()
+    {
+    cout<<"enter y\n";
+    cin>>y;
+    }
+    friend int substract(A,B);
 };
-
-void subtract(Number1 Obj1 , Number2 Obj2){
-    cout<< Obj1.num1 - Obj2.num2;
+int substract(A obj,B obj1)
+{
+    int ans;
+   ans=obj.x-obj1.y;
+   cout<<"substraction is "<<ans;
 }
-int main(){
-    Number1 Obj1;
-    Number2 Obj2;
-    subtract(Obj1,Obj2);
+int main()
+{
+    A t;
+    B t2;
+    t.input();
+    t2.input1();
+    substract(t,t2);
+    return 0;
 }

@@ -1,23 +1,32 @@
-// Write a C++ program to print area of circle, square and rectangle using inline function.
-#include<iostream>
+#include <iostream>
 using namespace std;
-class Area{
-    int side ,radius ,height,length;
-    public:
-        inline void area_of_circle(int radius){
-            float pi = 3.14;
-            cout<< int (pi * radius * radius) << endl;           //TypeCasting result to Integer
-        }
-        inline void area_of_square(int side){
-            cout<< side * side << endl;
-        }
-        inline void area_of_rectangle(int length, int height){
-            cout<< length * height <<endl;
-        }
-};
-int main(){
-    Area a1;
-    a1.area_of_circle(3);
-    a1.area_of_square(4);
-    a1.area_of_rectangle(3,5);
+inline float area_circle(int r)
+{
+    float area_c = 3.14 * r * r;
+    cout << "area of circle is " << area_c << "\n";
+}
+inline float area_square(int side)
+{
+    float areaof_square = side * side;
+    cout << "area of square is " << areaof_square << "\n";
+}
+inline float areaof_rectangle(int length, int width)
+{
+    float area_rectangle = length * width;
+    cout << "area of rectangle is " << area_rectangle;
+}
+int main()
+{
+    int r, side, length, width;
+    cout << "enter radius for circle\n";
+    cin >> r;
+    area_circle(r);
+    cout << "enter side of square\n";
+    cin >> side;
+    area_square(side);
+    cout << "enter lenght and width\n";
+    cin >> length >> width;
+    areaof_rectangle(length, width);
+    cout << "\n--------------------------\n";
+    return 0;
 }
