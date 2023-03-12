@@ -6,33 +6,28 @@ private:
     float salary;
 
 public:
-    Employee(float s = 0)
-    {
-        salary = s;
+    void accept(){
+        cout<<"Enter the employee Salary:\n";
+        cin>>salary;
     }
-    Employee operator--()
-    {
+    void operator --(){
         ++salary;
-        return *this;
     }
-    Employee operator--(int)
-    {
-        Employee temp(*this);
+    void operator --(int){
         --salary;
-        return temp;
     }
-    float getSalary() const
-    {
-        return salary;
+    void display(){
+        cout<<salary;
     }
 };
-int main()
-{
-    Employee emp(5000.0);
-    cout << "Salary: " << emp.getSalary() << endl;
-    emp--; // post-decrement
-    cout << "Salary after decrement: " << emp.getSalary() << endl;
-    --emp; // pre-decrement
-    cout << "Salary after decrement: " << emp.getSalary() << endl;
+int main(){
+    Employee e;
+    e.accept();
+    e--;
+    cout<<"Pre Increment is \n";
+    e.display();
+    --e;
+    cout<<"\n Post Increment is \n";
+    e.display();
     return 0;
 }
