@@ -18,7 +18,7 @@ class Cylinder
    area=2*(3.14*radius*height)+2*(3.14*radius*radius);
    volumn=3.14*radius*radius*height;
    cout<<"Area of a cylinder:"<<area<<endl;
-   cout<<"Volumn of a cylinder:"<<volumn<<endl;
+   cout<<"Volume of a cylinder:"<<volumn<<endl;
   }
 };
 int main()
