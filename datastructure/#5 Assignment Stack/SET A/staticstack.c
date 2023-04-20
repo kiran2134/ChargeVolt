@@ -37,7 +37,7 @@ void display()
 {
     int i;
     printf("\nItem in stack are");
-    for(i=top;i>=top;i--)
+    for(i=top;i>=0;i--)
     printf("\n%d",stack[i]);
 }
 void peek()
