@@ -20,27 +20,27 @@ void main(){
    getch();
 }
 void creation(int n){
-    int i,num;
-    struct node *preptr,*newnode;
-    if(n>=-1){
-       stnode=(struct node *)malloc(sizeof(struct node));
-       printf("Input data for node 1:");
-       scanf("%d",&num);
-       stnode->num=num;
-       stnode->nextptr=NULL;
-       preptr=stnode;
-       for(i=2;i<=n;i++){
-	  newnode=(struct node *)malloc(sizeof(struct node));
-	  printf("Input data for node %d:",i);
-	  scanf("%d",&num);
-	  newnode->num=num;
-	  newnode->nextptr=NULL;
-	  preptr->nextptr=newnode;
-	  preptr=newnode;
-    }
-       preptr->nextptr=stnode;
-    }
- }
+   int i,num;
+   struct node *preptr,*newnode;
+   if(n>=-1){
+      stnode=(struct node *)malloc(sizeof(struct node));
+      printf("Input data for node 1:");
+      scanf("%d",&num);
+      stnode->num=num;
+      stnode->nextptr=NULL;
+      preptr=stnode;
+      for(i=2;i<=n;i++){
+	      newnode=(struct node *)malloc(sizeof(struct node));
+	      printf("Input data for node %d:",i);
+	      scanf("%d",&num);
+	      newnode->num=num;
+	      newnode->nextptr=NULL;
+	      preptr->nextptr=newnode;
+	      preptr=newnode;
+      }
+      preptr->nextptr=stnode;
+   }
+}
 void display(){
     struct node *tmp;
     int n=1;
