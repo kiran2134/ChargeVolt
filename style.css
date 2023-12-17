@@ -107,7 +107,7 @@ body{
     float: left;
     margin-top: 10px;
 }
-.login{
+.signup{
     border: none;
     border-radius: 5px;
     outline: none;
@@ -118,6 +118,18 @@ body{
     background-color: rgb(43, 155, 16) ;
     color: white;
     cursor: pointer;
+}
+.login{
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+  font-weight: 700;
+  /* width: 8vw; */
+  padding: 10px 10px;
+  background-color: rgb(43, 155, 16) ;
+  color: white;
+  cursor: pointer;
 }
 .box p{
     font-size: 1.2rem;
@@ -144,18 +156,6 @@ img{
   float: left;
   margin-top: 10px;
 }
-.login {
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  font-size: 1rem;
-  font-weight: 700;
-  /* width: 8vw; */
-  padding: 15px 15px;
-  background-color: rgb(43, 155, 16);
-  color: white;
-  cursor: pointer;
-}
 .box p {
   font-size: 1.2rem;
   font-weight: 900;
@@ -169,6 +169,14 @@ a {
 .img img {
   animation: glass 1s both;
   width: 25vw;
+}
+.signup-form {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .login-form {
   visibility: hidden;

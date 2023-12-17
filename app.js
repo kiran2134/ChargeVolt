@@ -1,31 +1,27 @@
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    const square = entry.target.querySelector('.title');
+const express = require('express'); // Require express module
+const bodyParser = require('body-parser'); // Require body-parser module
 
-    if (entry.isIntersecting) {
-      square.classList.add('fade');
-      return; // if we added the class, exit the function
-    }
+const app = express(); // Create express app
+const port = 80;  // Server port
+app.use(express.static(__dirname)); // Serve static files from the current directory
 
-    // We're not intersecting, so remove the class!
-    square.classList.remove('fade');
-  });
+app.use(bodyParser.urlencoded({ extended: true })); // Use body-parser middleware
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+app.post('/signup', (req, res) => {
+    const formData = req.body;
+    console.log('Form data:', formData);
+    res.send('Form submitted successfully!');
 });
 
-observer.observe(document.querySelector('.header'));
+app.post('/login', (req, res) => {
+    const formData = req.body;
+    console.log('Form data:', formData);
+    res.send('Form submitted successfully!');
+});
 
-
-
-
-function visible(){
-  document.querySelector('.login-form').classList.toggle("visible")
-  document.querySelector('.content').classList.toggle("blur")
-  preventDeafault();
-}
-function toggleDark(){
-  document.querySelector('.light').classList.toggle("dark")
-  // document.querySelector('.box-content').classList.toggle("dark")
-  // document.querySelector('.light')
-
-  preventDeafault();
-}
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
