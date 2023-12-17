@@ -1,14 +1,14 @@
 {
-  "name": "htdocs",
+  "name": "greenify",
   "version": "1.0.0",
-  "description": "",
+  "description": "EV Charging Dashboard",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "RiseOneLimit,Alone_X,Abhishek",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
