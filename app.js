@@ -2,7 +2,7 @@ const express = require('express'); // Require express module
 const bodyParser = require('body-parser'); // Require body-parser module
 
 const app = express(); // Create express app
-const port = 19470;  // Server port
+const port = process.env.PORT;  // Server port
 app.use(express.static(__dirname)); // Serve static files from the current directory
 
 app.use(bodyParser.urlencoded({ extended: true })); // Use body-parser middleware
