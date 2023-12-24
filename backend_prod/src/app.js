@@ -15,8 +15,16 @@ app.use(express.urlencoded({
     limit: "64kb"
 }));
 app.use(express.static("public"))
-
 app.use(cookieParser());
+
+//Routes
+const userRouter = require("./routes/user.routes.js");
+
+
+
+//Routes Declaration
+app.use("/api/v1/user", userRouter)
+
 
 
 

@@ -1,7 +1,8 @@
 require('dotenv').config();
-const express = require("express"); 
-const app = express();
 const db_conn = require("./db/db_conn.js");
+
+const app = require("./app.js");
+
 db_conn()
 .then(() => {
     app.listen(process.env.PORT || 8081, () => {
