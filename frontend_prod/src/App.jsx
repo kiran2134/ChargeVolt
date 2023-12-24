@@ -1,14 +1,15 @@
 import { useState } from 'react'
+import LandingPage from './pages/LandingPage'
+import Navbar from './pages/Navbar'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <h1 className="text-3xl text-red-500 font-bold underline">
-        Hello world!
-      </h1>
-    </>
+    <section className=' w-full flex-box flex-col'>
+      <Navbar/>
+      <LandingPage/>
+    </section>
   )
 }
 
