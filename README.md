@@ -2,7 +2,7 @@
 
 SparkCharge® is a free, open-source EV Charging panel built with HTML, CSS, React, NodeJS.
 
-Stop settling for less. Make game servers a first class citizen on your platform.
+Stop settling for less.
 
 ## Project Members
 
