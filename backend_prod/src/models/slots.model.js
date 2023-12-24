@@ -30,4 +30,6 @@ const slotsSchema = new mongoose.Schema({
 },{timestamps: true});
 //slotsSchema.plugin(mongooseAggregatePaginate);
 
-export const Slots = mongoose.model("Slots", slotsSchema);
+const Slots = mongoose.model("Slots", slotsSchema);
+
+module.exports = Slots;
