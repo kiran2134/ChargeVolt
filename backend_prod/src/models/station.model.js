@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const stationSchema = new mongoose.Schema({
     sid: {
-        type: Schema.Types.UUID,
+        type: mongoose.Schema.Types.UUID,
         ref: 'Station',
         required: true,
         unique: true

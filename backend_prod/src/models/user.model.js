@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 const userSchema = new mongoose.Schema({
     uid:{
-        type: Schema.Types.UUID,
+        type: mongoose.Schema.Types.UUID,
         ref: 'User'
     },
     name: {
