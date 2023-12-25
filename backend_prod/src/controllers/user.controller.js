@@ -8,12 +8,11 @@ const apiresponse = require('../utils/apiresponse.js');
 const registerUser = asyncHandler(async (req, res) => {
     const {name,email,phone,password} = req.body
     
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\d{10}$/;
     const passwordRegex = /^(?=.*[a-zA-Z\d]).{8,}$/;
 
-    if([name,email,phone,password].some((field)=>field?.trim() === "")){
+    if([name,email,phone,password].some((field)=>field === undefined || (field?.trim() === ""))){
         throw new apierror(400,"Please fill all the fields!")
     }
     if(emailRegex.test(email) === false){
@@ -28,7 +27,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const Useralreadyexists = await User.findOne({
         $or: [{email}, {phone}]
     })
-    console.log(name,email,phone,password)
+
     if(Useralreadyexists){
         throw new apierror(409,"User account already exists!")
     }
