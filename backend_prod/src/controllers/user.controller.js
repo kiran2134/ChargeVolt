@@ -11,7 +11,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const phoneRegex = /^\d{10}$/;
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    const passwordRegex = /^(?=.*[a-zA-Z\d]).{8,}$/;
 
     if([name,email,phone,password].some((field)=>field?.trim() === "")){
         throw new apierror(400,"Please fill all the fields!")
