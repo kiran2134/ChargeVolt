@@ -98,7 +98,6 @@ const loginUser = asyncHandler(async (req, res) => {
         //If user does not exists
         throw new apierror(401,"User Account does not exists!")
     }
-
     const isPasswordValid = await user.isPasswordCorrect(password)
     //Check if password is correct
     if(!isPasswordValid){
@@ -210,5 +209,65 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = {registerUser,loginUser,logoutUser, refreshAccessToken}
+const deleteAccount = asyncHandler(async (req, res) => {
+    const terminationconfirmpass = req.body.terminationconfirmpass
+    if(terminationconfirmpass === undefined || (terminationconfirmpass?.trim() === "")){
+        //If password is undefined or empty
+        throw new apierror(400,"Please enter your password to confirm termination!")
+    }
+    //Get password from request body
+    const user = await User.findById(req.user._id)
+    const isPasswordValid = await user.isPasswordCorrect(terminationconfirmpass)
+    //Check if password is correct
+    if(!isPasswordValid){
+        //If password is incorrect
+        throw new apierror(401,"Incorrect Password! Termination Aborted!")
+    }
+    const terminateAccount = await User.findByIdAndDelete(req.user._id)
+    if(!terminateAccount){
+        //If user is not found
+        throw new apierror(500,"Trust Me Something seriously went wrong while termination!")
+        //this should never execute
+    }
+    //Find user by id and delete
+    return res.status(200)
+    .json(new apiresponse(200,{},"User Account Terminated Successfully!"))
+})
+
+const changePassword = asyncHandler(async (req, res) => {
+    const {oldPassword, newPassword, confirmNewPassword} = req.body
+    //Get old password and new password from request body
+    const passwordRegex = /^(?=.*[a-zA-Z\d]).{8,}$/;
+    //Regex to validate password
+
+    if([oldPassword,newPassword,confirmNewPassword].some((field)=>field === undefined || (field?.trim() === ""))){
+        //If any of the fields are undefined or empty
+        throw new apierror(400,"Please fill all the fields!")
+    }
+    if(newPassword !== confirmNewPassword){
+        //If new password and confirm new password do not match
+        throw new apierror(400,"New Password and Confirm New Password do not match!")
+    }
+    if(passwordRegex.test(newPassword) === false){
+        //If password is invalid
+        throw new apierror(400,"Please enter a valid password!")
+    }
+
+    const user = await User.findById(req.user._id)
+    //Find user by id
+    const isPasswordValid = await user.isPasswordCorrect(oldPassword)
+    //Check if password is correct
+    if(!isPasswordValid){
+        //If password is incorrect
+        throw new apierror(401,"Incorrect Password!")
+    }
+    user.password = newPassword
+    //Set password to new password
+    await user.save()
+    //Save user
+    return res.status(200)
+    .json(new apiresponse(200,{},"Password changed successfully!"))
+})
+
+module.exports = {registerUser,loginUser,logoutUser, refreshAccessToken, deleteAccount, changePassword}
 //Export User Controller Functions

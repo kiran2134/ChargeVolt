@@ -1,4 +1,4 @@
-const { registerUser, loginUser, logoutUser, refreshAccessToken } = require('../controllers/user.controller.js');
+const { registerUser, loginUser, logoutUser, refreshAccessToken, deleteAccount, changePassword } = require('../controllers/user.controller.js');
 //Import User Controller from user.controller.js
 
 const { verifyJWT } = require('../middlewares/auth.middleware.js');
@@ -19,6 +19,9 @@ router.route("/logout").post(verifyJWT, logoutUser);
 //Secure Logout User Route
 router.route("/refresh-token").post(verifyJWT, refreshAccessToken)
 //Secure Refresh Access Token Route
+router.route("/terminate").post(verifyJWT, deleteAccount)
+//Secure Delete Account Route
+router.route("/change-password").post(verifyJWT, changePassword)
 
 module.exports = router;
 //Export User Router
