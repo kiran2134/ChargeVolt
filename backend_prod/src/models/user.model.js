@@ -49,10 +49,13 @@ const userSchema = new mongoose.Schema({
         maxlength: [64, "Password must be at most 64 characters!"],
         validate: {
             validator: function (v) {
-                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/.test(v);
+                return /^(?=.*[a-zA-Z\d]).{8,}$/.test(v);
             },
             message: (props) => `${props.value} is not a valid password!`,
         }
+    },
+    refreshToken: {
+        type: String
     },
     isAdmin: {
         type: Boolean,
