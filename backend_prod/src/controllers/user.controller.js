@@ -265,7 +265,7 @@ const changePassword = asyncHandler(async (req, res) => {
     }
     user.password = newPassword
     //Set password to new password
-    await user.save()
+    await user.save({validateBeforeSave: false})
     //Save user
     return res.status(200)
     .json(new apiresponse(200,{},"Password changed successfully!"))
