@@ -8,8 +8,6 @@ const apierror = require('../utils/apierror.js');
 //Import API Error from utils/apierror.js
 const jwt = require('jsonwebtoken');
 //Import JWT fronm jsonwebtoken
-const mongoose = require('mongoose');
-//Import Mongoose
 const apiresponse = require('../utils/apiresponse.js');
 //Import API Response from utils/apiresponse.js
 
