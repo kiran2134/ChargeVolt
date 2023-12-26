@@ -18,7 +18,7 @@ router.route("/add-station").post(verifyJWT, addStation)
 router.route("/remove-station").post(verifyJWT, removeStation)
 //Secure Remove Station Route
 router.route("/locate-station").get(verifyJWT, getStationByLocation)
-//Get Station By Location Route
+//Locate-Station Secure Route
 
 module.exports = router;
 //Export User Router
