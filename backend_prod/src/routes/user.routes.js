@@ -1,4 +1,17 @@
-const { registerUser, loginUser, logoutUser, refreshAccessToken, deleteAccount, changePassword, getUserVehicle, addVehicle, deleteVehicle, getCurrentUser } = require('../controllers/user.controller.js');
+const{
+    registerUser,
+    loginUser, 
+    logoutUser, 
+    refreshAccessToken, 
+    deleteAccount, 
+    changePassword, 
+    getUserVehicle, 
+    addVehicle, 
+    deleteVehicle, 
+    getCurrentUser,
+    promoteAdmin,
+    demoteAdmin
+    } = require('../controllers/user.controller.js');
 //Import User Controller from user.controller.js
 
 const { verifyJWT } = require('../middlewares/auth.middleware.js');
@@ -31,6 +44,10 @@ router.route("/add-vehicle").post(verifyJWT, addVehicle)
 //Secure Add Vehicle Route
 router.route("/delete-vehicle").post(verifyJWT, deleteVehicle)
 //Secure Delete Vehicle Route
+router.route("/promote-admin").post(verifyJWT, promoteAdmin)
+//Secure Promote Admin Route
+router.route("/demote-admin").post(verifyJWT, demoteAdmin)
+//Secure Demote Admin Route
 
 module.exports = router;
 //Export User Router

@@ -5,21 +5,38 @@ const stationSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.UUID,
         ref: 'Station',
         //Reference to Station Model
-        required: true,
-        unique: true
+    },
+    station_name: {
+        type: String,
+        unique: true,
+        trim: true,
+        uppercase: true,
+        required: [true, "Station Name cannot be empty!"],
+        minlength: [3, "Station Name must be at least 3 characters!"],
+        maxlength: [32, "Station Name must be at most 32 characters!"]
     },
     city: {
         type: String,
+        trim: true,
+        uppercase: true,
         required: [true, "City cannot be empty!"],
         minlength: [3, "City must be at least 3 characters!"],
         maxlength: [32, "City must be at most 32 characters!"]
     },
     state: {
         type: String,
+        trim: true,
+        uppercase: true,
         required: [true, "State cannot be empty!"],
         minlength: [3, "State must be at least 3 characters!"],
         maxlength: [32, "State must be at most 32 characters!"]
-    }
+    },
+    availableSlots: {
+        type: Number,
+        trim: true,
+        required: [true, "Available Slots cannot be empty!"],
+        min: [0, "Available Slots cannot be negative!"]
+    },
 },
 {timestamps: true});
 //Add createdAt and updatedAt fields automatically managed by Mongoose

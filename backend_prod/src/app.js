@@ -28,12 +28,14 @@ app.use(cookieParser());
 
 
 const userRouter = require("./routes/user.routes.js");
+const stationRouter = require("./routes/station.routes.js");
 //Import User Routes from user.routes.js
 
 
 
 
 app.use("/api/v1/user", userRouter)
+app.use("/api/v1/station", stationRouter);
 //Routes Declaration
 
 

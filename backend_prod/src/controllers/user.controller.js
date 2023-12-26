@@ -6,10 +6,10 @@ const asyncHandler = require('../utils/asyncHandler.js');
 //Import Async Handler from utils/asyncHandler.js
 const apierror = require('../utils/apierror.js');
 //Import API Error from utils/apierror.js
-const jwt = require('jsonwebtoken');
-//Import JWT fronm jsonwebtoken
 const apiresponse = require('../utils/apiresponse.js');
 //Import API Response from utils/apiresponse.js
+const jwt = require('jsonwebtoken');
+//Import JWT fronm jsonwebtoken
 
 const registerUser = asyncHandler(async (req, res) => {
     const {name,email,phone,password} = req.body
@@ -343,5 +343,102 @@ const deleteVehicle = asyncHandler(async (req, res) => {
     return res.status(200)
     .json(new apiresponse(200,{},"Vehicle Deleted Successfully!"))
 })
-module.exports = {registerUser,loginUser,logoutUser, refreshAccessToken, deleteAccount, changePassword, getUserVehicle, addVehicle, deleteVehicle, getCurrentUser}
+const promoteAdmin = asyncHandler(async (req, res) => {
+    const isAdmin = req.user.isAdmin;
+    if(!isAdmin){
+        //If not an admin
+        throw new apierror(403, "You are not authorized to access this route!")
+    }
+    const email = req.body.email
+    if(email === undefined || (email?.trim() === "")){
+        //If email is undefined or empty
+        throw new apierror(400,"Received null/undefined email!")
+    }
+    const emailexists = await User.findOne({
+        //Check if email exists
+        $or: [{email: email}]
+    })
+    if(!emailexists){
+        //If email does not exists
+        throw new apierror(404,"User Account does not exists!")
+    }
+    if(emailexists.isAdmin){
+        //If user is already an admin
+        throw new apierror(409,"User is already an admin!")
+    }
+    const makeAdmin = await User.findByIdAndUpdate(emailexists,{
+        //Find user by id and make admin true
+        $set: {
+            isAdmin: true
+        }
+    },{
+        new: true
+        //Return updated user
+    })
+    if(!makeAdmin){
+        //If user is not found
+        throw new apierror(500,"Trust Me Something seriously went wrong while making user admin!")
+        //this should never execute
+    }
+    return res.status(200)
+    .json(new apiresponse(200,makeAdmin,"User Promoted to Admin Successfully!"))
+})
+const demoteAdmin = asyncHandler(async (req, res) => {
+    const isAdmin = req.user.isAdmin;
+    if(!isAdmin){
+        //If not an admin
+        throw new apierror(403, "You are not authorized to access this route!")
+    }
+    const email = req.body.email
+    if(email === undefined || (email?.trim() === "")){
+        //If email is undefined or empty
+        throw new apierror(400,"Received null/undefined email!")
+    }
+    const emailexists = await User.findOne({
+        //Check if email exists
+        $or: [{email: email}]
+    })
+    if(!emailexists){
+        //If email does not exists
+        throw new apierror(404,"User Account does not exists!")
+    }
+    if(!emailexists.isAdmin){
+        //If user is already an admin
+        throw new apierror(409,"User is not an admin!")
+    }
+    if(email===req.user.email){
+        //If user is trying to demote himself
+        throw new apierror(409,"You cannot demote yourself!")
+    }
+    const remAdmin = await User.findByIdAndUpdate(emailexists,{
+        //Find user by id and make admin true
+        $set: {
+            isAdmin: false
+        }
+    },{
+        new: true
+        //Return updated user
+    })
+    if(!remAdmin){
+        //If user is not found
+        throw new apierror(500,"Trust Me Something seriously went wrong while making user admin!")
+        //this should never execute
+    }
+    return res.status(200)
+    .json(new apiresponse(200,remAdmin,"Admin demoted Successfully!"))
+})
+module.exports = {
+    registerUser,
+    loginUser,
+    logoutUser, 
+    refreshAccessToken, 
+    deleteAccount, 
+    changePassword, 
+    getUserVehicle, 
+    addVehicle, 
+    deleteVehicle, 
+    getCurrentUser, 
+    promoteAdmin,
+    demoteAdmin
+}
 //Export User Controller Functions
