@@ -1,4 +1,4 @@
-const { registerUser, loginUser, logoutUser, refreshAccessToken, deleteAccount, changePassword } = require('../controllers/user.controller.js');
+const { registerUser, loginUser, logoutUser, refreshAccessToken, deleteAccount, changePassword, getUserVehicle, addVehicle, deleteVehicle, getCurrentUser } = require('../controllers/user.controller.js');
 //Import User Controller from user.controller.js
 
 const { verifyJWT } = require('../middlewares/auth.middleware.js');
@@ -15,6 +15,10 @@ router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 //Login User Route
 
+router.route("/get-user").get(verifyJWT, getCurrentUser)
+//Secure Get Current User Route
+router.route("/get-vehicle").get(verifyJWT, getUserVehicle)
+//Secure Get Vehicle Route
 router.route("/logout").post(verifyJWT, logoutUser);
 //Secure Logout User Route
 router.route("/refresh-token").post(verifyJWT, refreshAccessToken)
@@ -22,6 +26,11 @@ router.route("/refresh-token").post(verifyJWT, refreshAccessToken)
 router.route("/terminate").post(verifyJWT, deleteAccount)
 //Secure Delete Account Route
 router.route("/change-password").post(verifyJWT, changePassword)
+//Secure Change Password Route
+router.route("/add-vehicle").post(verifyJWT, addVehicle)
+//Secure Add Vehicle Route
+router.route("/delete-vehicle").post(verifyJWT, deleteVehicle)
+//Secure Delete Vehicle Route
 
 module.exports = router;
 //Export User Router

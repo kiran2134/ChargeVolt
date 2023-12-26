@@ -8,7 +8,7 @@ const vehicleSchema=new mongoose.Schema({
         //Reference to User Model
         required: true
     },
-    vehicle1: {
+    registrationNumber: {
         type: String,
         required: true,
         unique: [true,"Vehicle already registered with this registration number!"],
@@ -20,27 +20,9 @@ const vehicleSchema=new mongoose.Schema({
             message: props => `${props.value} is not a valid vehicle number!`
         }
     },
-    vehicle2: {
+    vehicleCompany: {
         type: String,
-        unique: [true,"Vehicle already registered with this registration number!"],
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z]{2}\d{2}[a-zA-Z]{2}\d{4}$/.test(v);
-                //Regex to validate vehicle number
-            },
-            message: props => `${props.value} is not a valid vehicle number!`
-        }
-    },
-    vehicle3: {
-        type: String,
-        unique: [true,"Vehicle already registered with this registration number!"],
-        validate: {
-            validator: function (v) {
-                return /^[a-zA-Z]{2}\d{2}[a-zA-Z]{2}\d{4}$/.test(v);
-                //Regex to validate vehicle number
-            },
-            message: props => `${props.value} is not a valid vehicle number!`
-        }
+        required: [true,"Vehicle Company is required!"],
     }
 },
 {timestamps: true});

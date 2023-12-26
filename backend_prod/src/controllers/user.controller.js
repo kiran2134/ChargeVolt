@@ -1,5 +1,7 @@
 const User=require('../models/user.model.js');
 //Import User Model from models/user.model.js
+const Vehicle = require('../models/vehicle.model.js');
+//Import Vehicle Model from models/vehicle.model.js
 const asyncHandler = require('../utils/asyncHandler.js');
 //Import Async Handler from utils/asyncHandler.js
 const apierror = require('../utils/apierror.js');
@@ -268,6 +270,80 @@ const changePassword = asyncHandler(async (req, res) => {
     return res.status(200)
     .json(new apiresponse(200,{},"Password changed successfully!"))
 })
-
-module.exports = {registerUser,loginUser,logoutUser, refreshAccessToken, deleteAccount, changePassword}
+const getUserVehicle = asyncHandler(async (req, res) => {
+    const vehicle = await Vehicle.find({uid: req.user._id})
+    //Find vehicle by id
+    if(vehicle === undefined || vehicle.length === 0){
+        //If vehicle is not found
+        throw new apierror(404,"Vehicle not found!")
+    }
+    return res.status(200)
+    .json(new apiresponse(200,vehicle,"Vehicle found successfully!"))
+})
+const getCurrentUser = asyncHandler(async (req, res) => {
+    return res.status(200)
+    .json(new apiresponse(200,req.user,"User found successfully!"))
+})
+const addVehicle = asyncHandler(async (req, res) => {
+    const {registrationNum, company} = req.body
+    //Get registration number from request body
+    const vehicleRegex = /^[a-zA-Z]{2}\d{2}[a-zA-Z]{2}\d{4}$/
+    //Regex to validate vehicle number
+    if(registrationNum === undefined || (registrationNum?.trim() === "")){
+        //If vehicle number is undefined or empty
+        throw new apierror(400,"Received null/undefined vehicle number!")
+    }
+    if(vehicleRegex.test(registrationNum) === false){
+        //If vehicle number is invalid
+        throw new apierror(400,"Please enter a valid vehicle number!")
+    }
+    const vehicleAlreadyExists = await Vehicle.findOne({
+        //Check if vehicle already exists
+        $or: [{registrationNumber: registrationNum}]
+    })
+    if(vehicleAlreadyExists){
+        //If vehicle already exists
+        throw new apierror(409,"Vehicle is already registered!")
+    }
+    const vehicle = await Vehicle.create({
+        //Create new vehicle
+        uid: req.user._id,
+        registrationNumber: registrationNum,
+        vehicleCompany: company
+    })
+    return res.status(201).json(
+        //Return success response
+        new apiresponse(200,vehicle,"Vehicle registered successfully!")
+    )
+})
+const deleteVehicle = asyncHandler(async (req, res) => {
+    const registrationNum = req.body.registrationNumber
+    if(registrationNum === undefined || (registrationNum?.trim() === "")){
+        //If vehicle number is undefined or empty
+        throw new apierror(400,"Received null/undefined vehicle number!")
+    }
+    const vehicleExists = await Vehicle.findOne({
+        //Check if vehicle exists and Delete
+        $or: [{registrationNumber: registrationNum}]
+    })
+    if(!vehicleExists){
+        throw new apierror(404,"Vehicle not found!")
+    }
+    if(vehicleExists.uid.toString() !== req.user._id.toString()){
+        //If vehicle does not belong to user
+        throw new apierror(401,"Unauthorized Request!")
+    }
+    const finalterminatevehicle = await Vehicle.findOneAndDelete({
+        //Find vehicle by id and delete
+        $or: [{registrationNumber: registrationNum}]
+    })
+    if(!finalterminatevehicle){
+        //If vehicle is not found
+        throw new apierror(500,"Trust Me Something seriously went wrong while vehicle termination!")
+        //this should never execute
+    }
+    return res.status(200)
+    .json(new apiresponse(200,{},"Vehicle Deleted Successfully!"))
+})
+module.exports = {registerUser,loginUser,logoutUser, refreshAccessToken, deleteAccount, changePassword, getUserVehicle, addVehicle, deleteVehicle, getCurrentUser}
 //Export User Controller Functions
