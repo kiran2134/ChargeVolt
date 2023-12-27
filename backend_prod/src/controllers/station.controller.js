@@ -13,8 +13,8 @@ const addStation = asyncHandler(async (req, res) => {
         //If not an admin
         throw new apierror(403, "You are not authorized to access this route!")
     }
-    const { station_name, city, state, availslot} = req.body;
-    if([station_name, city, state, availslot].some((field)=>field === undefined || (field?.trim() === ""))){
+    const { station_name, city, state} = req.body;
+    if([station_name, city, state].some((field)=>field === undefined || (field?.trim() === ""))){
         //If any of the fields are undefined or empty
         throw new apierror(400,"Please fill all the fields!")
     }
@@ -26,8 +26,7 @@ const addStation = asyncHandler(async (req, res) => {
         const station = await Station.create({
             station_name: station_name.toUpperCase(),
             city: city.toUpperCase(),
-            state: state.toUpperCase(),
-            availableSlots: availslot.trim()
+            state: state.toUpperCase()
         });
         if(!station){
             //If station is not created
