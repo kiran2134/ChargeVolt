@@ -147,7 +147,7 @@ const getStationSlotByLocation = asyncHandler(async (req, res) => {
     for (let i = 0; i < stations.length; i++) {
         const slots = await Slot.find({sid: stations[i]._id});
         const stationSlots = slots.map((slotmap) => ({
-            station: slotmap.stationName,
+            station: slotmap.stationname,
             slots: slotmap.type,
         }));
         slotarray.push({
