@@ -1,7 +1,10 @@
 const{ 
     addStation,
     removeStation,
-    getStationByLocation
+    getStationByLocation,
+    addSlot,
+    removeSlot,
+    getStationSlotByLocation
 } = require('../controllers/station.controller.js');
 //Import User Controller from user.controller.js
 
@@ -13,12 +16,18 @@ const Router = require('express').Router;
 const router = Router();
 //Create Router
 
+router.route("/locate-station").get(verifyJWT, getStationByLocation)
+//Locate-Station Secure Route
+router.route("/locate-slot").get(verifyJWT, getStationSlotByLocation)
+//Locate-Slot Secure Route
 router.route("/add-station").post(verifyJWT, addStation)
 //Secure Add Station Route
 router.route("/remove-station").post(verifyJWT, removeStation)
 //Secure Remove Station Route
-router.route("/locate-station").get(verifyJWT, getStationByLocation)
-//Locate-Station Secure Route
+router.route("/add-slot").post(verifyJWT, addSlot)
+//Secure Add Slot Route
+router.route("/remove-slot").post(verifyJWT, removeSlot)
+//Secure Remove Slot Route
 
 module.exports = router;
 //Export User Router
