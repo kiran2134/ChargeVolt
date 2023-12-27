@@ -4,7 +4,8 @@ const{
     getStationByLocation,
     addSlot,
     removeSlot,
-    getStationSlotByLocation
+    getStationSlotByLocation,
+    getSlotByStation
 } = require('../controllers/station.controller.js');
 //Import User Controller from user.controller.js
 
@@ -20,6 +21,8 @@ router.route("/locate-station").get(verifyJWT, getStationByLocation)
 //Locate-Station Secure Route
 router.route("/locate-slot").get(verifyJWT, getStationSlotByLocation)
 //Locate-Slot Secure Route
+router.route("/getslotbystation").get(verifyJWT, getSlotByStation)
+//Locate Slot by Station Secure Route
 router.route("/add-station").post(verifyJWT, addStation)
 //Secure Add Station Route
 router.route("/remove-station").post(verifyJWT, removeStation)
