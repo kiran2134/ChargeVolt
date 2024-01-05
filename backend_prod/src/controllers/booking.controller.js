@@ -29,7 +29,7 @@ const reserve = asyncHandler(async (req, res) => {
     if (selectedDate < today) {
         throw new apierror(400, "Selected date cannot be older than today!");
     }
-    if(bookingTime < 0 || bookingTime > 16){
+    if(bookingTime < 1 || bookingTime > 16){
         throw new apierror(400, "Invalid time slot!");
     }
     //Check if TimeSlot is valid

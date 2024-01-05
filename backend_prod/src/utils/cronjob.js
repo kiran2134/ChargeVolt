@@ -5,7 +5,7 @@ const User = require('../models/user.model.js');
 
 const cronjob = async () =>{
     const today = new Date();
-    //today.setDate(today.getDate()+1);
+    today.setDate(today.getDate()+1);
     const tommorow = new Date(today);
     tommorow.setDate(tommorow.getDate() + 1);
     const dayAfterTommorow = new Date(today);
