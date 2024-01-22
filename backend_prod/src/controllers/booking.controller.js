@@ -153,7 +153,7 @@ const reserve = asyncHandler(async (req, res) => {
 
 const cancelReservation = asyncHandler(async (req, res) => {
     const bookingId = req.body.bookingId
-    if(bookingId === undefined || typeof field != 'string' || bookingId.trim() === ""){
+    if(bookingId === undefined || typeof bookingId != 'string' || bookingId.trim() === ""){
         throw new apierror(400, "Please fill all the fields!")
     }
     const reservation = await Booking.findOne({
