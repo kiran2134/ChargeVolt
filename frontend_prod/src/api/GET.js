@@ -1,6 +1,6 @@
 import { axiosInstance } from "./axios";
 
-export const getStationByLocaion = async(locationData,token)=>{
+export const getStationByLocation = async(locationData,token)=>{
     
     try{
         console.log(token);
@@ -17,7 +17,28 @@ export const getStationByLocaion = async(locationData,token)=>{
         return {success:true,stationData:data};
     }
     catch(e){
-        console.log(e);
+        return {success:false,message:e.response.data.data}
+    }
+}
+
+export const getLocation = async(locationData,key)=>{
+    
+    try{
+
+        const {data,status} = await axiosInstance.get('https://maps.googleapis.com/maps/api/geocode/json',{
+            params:
+            {
+                address:locationData,
+                key:key
+            }
+        })
+
+        if( status != 200){
+            throw new Error(data)
+        }
+        return {success:true,latLang:data.results[0].geometry.location};
+    }
+    catch(e){
         return {success:false,message:e.response.data.data}
     }
 }
@@ -30,7 +51,6 @@ export const getSlotData = async(stationName)=>{
             },
             params:{station_name:stationName}
         })
-        console.log(data);
         if( status != 200){
             throw new Error(data)
         }
@@ -41,3 +61,44 @@ export const getSlotData = async(stationName)=>{
         return {success:false,message:e.response.data.data}
     }
 }
+
+export const getUserVehicle = async()=>{
+    
+    try{
+
+        const {data,status} = await axiosInstance.get('/user/get-vehicle',{
+            headers:{
+                "Authorization":`Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        console.log(data);
+        if( status != 200){
+            throw new Error(data)
+        }
+        return {success:true,vehicles:data.data};
+    }
+    catch(e){
+        return {success:false,message:e.response.data.data}
+    }
+}
+
+export const getUserBookings = async()=>{
+    
+    try{
+
+        const {data,status} = await axiosInstance.get('/booking/get-booking',{
+            headers:{
+                "Authorization":`Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        console.log(data);
+        if( status != 200){
+            throw new Error(data)
+        }
+        return {success:true,booking:data.data};
+    }
+    catch(e){
+        return {success:false,message:e.response.data.data}
+    }
+}
+
