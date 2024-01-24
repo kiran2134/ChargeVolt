@@ -1,4 +1,4 @@
-# SparkCharge
+[![Logo Image](https://i.imgur.com/7kP0Zjt.png)](https://sparkcharge.unstablehosting.co.in)
 
 SparkCharge® is a free, open-source EV Charging panel built with HTML, CSS, React, NodeJS.
 
