@@ -16,6 +16,10 @@ import { Data } from "../context/DataContext";
 import { searchStationAction } from "../action/action";
 import ProtectedRoute from "../components/utils/ProtectedRoute";
 import Title from "../components/Title";
+// import dotenv from "dotenv"
+
+// dotenv.config()
+
 
 const StationsSearchPage = () => {
     const locationNameRef = useRef("");
@@ -28,7 +32,7 @@ const StationsSearchPage = () => {
     const context = useContext(Data);
 
     const { extend, isLoaded } = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyBQ0mIXZ7BR7KvXfMpS0hPx0LYnbhb6AKI",
+        googleMapsApiKey: "AIzaSyBsbie82f46qsuAybbYZZynd8XWkr9iCN0",
         libraries: ["places"],
         mapIds: ["77e9b6d157be5f17"],
     });
@@ -50,7 +54,7 @@ const StationsSearchPage = () => {
         );
         const { latLang } = await getLocation(
             searchLocation,
-            "AIzaSyBQ0mIXZ7BR7KvXfMpS0hPx0LYnbhb6AKI"
+            "AIzaSyBsbie82f46qsuAybbYZZynd8XWkr9iCN0"
         );
 
         if (res.success) {
@@ -65,10 +69,12 @@ const StationsSearchPage = () => {
                 type: searchStationAction.RESET_DATA,
             });
         }
-        setLocation(latLang);
+        console.log({latLang});
         const bounds = new window.google.maps.LatLngBounds(latLang);
+        console.log({bounds});
+        setLocation(latLang);
         var zoom = map.getZoom();
-        map.setZoom(zoom < 10 ? 10 : zoom);
+        map.setZoom(zoom < 5 ? 11 : zoom);
         bounds.extend(location);
         map.fitBounds(bounds);
     };
@@ -80,16 +86,11 @@ const StationsSearchPage = () => {
     return (
         <ProtectedRoute>
             <section className="  w-full h-screen overflow-hidden relative grid grid-cols-3 bg-[#f8f1ff]">
-
-
                 <div className=" z-10 col-span-1 overflow-hidden border-green-500 w-full h-[90%] flex-box gap-5 justify-start flex-col mt-[5em]  ">
-
-
                     <div className=" w-3/4 ">
-                        <Title text={"Stations"}/>
+                        <Title text={"Stations"} />
                         <hr className=" w-full h-1 bg-violet-500 rounded-xl" />
                     </div>
-
 
                     <div className=" w-[85%] h-[100%]  overflow-y-scroll no-scrollbar border-red-500  gap-8 flex-box justify-start flex-col">
                         {context.SEARCH_STATION ? (
@@ -106,11 +107,9 @@ const StationsSearchPage = () => {
                             </div>
                         )}
                     </div>
-
                 </div>
 
                 <div className=" z-10  col-span-2 w-full  gap-5 flex-box flex-col  border-black">
-
                     {/* SEARCH BAR */}
                     <div className=" w-3/4 h-[20%] mt-[5em] grid grid-cols-4 gap-5">
                         <div className=" w-full h-full flex-box flex-col justify-evenly rounded-2xl py-3 gap-5 col-span-4">
@@ -153,7 +152,6 @@ const StationsSearchPage = () => {
                         </div>
                     </div>
 
-
                     <div className=" w-3/4 mt-5 h-[60%] rounded-2xl overflow-hidden shadow-xl ">
                         <GoogleMap
                             center={location}
@@ -171,7 +169,6 @@ const StationsSearchPage = () => {
                             }}
                         ></GoogleMap>
                     </div>
-
                 </div>
 
                 <img
@@ -180,7 +177,6 @@ const StationsSearchPage = () => {
                     className=" w-full h-full object-cover opacity-10 absolute top-0 "
                     draggable={false}
                 />
-
             </section>
         </ProtectedRoute>
     );
