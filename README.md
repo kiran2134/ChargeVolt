@@ -1,4 +1,4 @@
-[![Logo Image](https://i.imgur.com/7kP0Zjt.png)](https://sparkcharge.unstablehosting.co.in)
+[![Logo Image](https://i.imgur.com/2N54Dl1.png)](https://sparkcharge.unstablehosting.co.in)
 
 SparkCharge® is a free, open-source Electric Vehicle Charging panel built with MERN Stack with Tailwind CSS.
 
