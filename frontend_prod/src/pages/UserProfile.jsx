@@ -27,7 +27,7 @@ const UserProfile = () => {
 
 
     const handleAddVehicle = async()=>{
-
+        console.log(newVehicleData)
         const res = await addVehicle(newVehicleData);
 
         if(res.success){

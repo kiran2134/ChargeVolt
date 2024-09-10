@@ -5,6 +5,7 @@ import { getSlotData, getUserVehicle } from "../api/GET";
 import Button from "../components/Button";
 import SlotType from "../components/SlotType";
 import GradientLink from "../components/utils/GradientLink";
+import {makeBooking} from "../api/POST";
 import { getMonth, getTimeSlot } from "../utils/helper";
 
 import grid from "../assets/test.svg";
@@ -40,9 +41,7 @@ const Station = () => {
             if (res.success && vehicleResponse.success) {
                 setSlotData(res.slotData.data);
                 setVehicle(vehicleResponse.vehicles);
-                setSelectedVehicle(
-                    vehicleResponse.vehicles[0].registrationNumber
-                );
+                setSelectedVehicle(vehicleResponse.vehicles[0].registrationNumber);
             }
         };
         fetchSlotData();
@@ -52,6 +51,30 @@ const Station = () => {
         setTime(e.target.value);
     };
 
+    const handleConfirmBooking = async(e) => {
+        e.preventDefault();
+        const bookingDetails = {
+            stationName: stationData?.station_name,
+            city: stationData?.city,
+            bookingDate: day.dayStamp,
+            slotType: slotType?.slotType,
+            bookingTime: time,
+            selectedDate:day,
+            registrationNumber: selectedVehicle,
+        };
+
+        const {data,status} = await makeBooking(bookingDetails);
+       // console.log(bookingDetails)
+        // You can replace this with an API call to save the booking details
+        console.log(data,status);
+        if(status==201){
+            console.log("Booking confirmed with details:", bookingDetails);
+            alert("Booking confirmed!");
+        }
+        else{
+            alert("Booking failed!");
+        }
+    };
     return (
         <section className=" w-full h-[100vh] relative flex-box flex-col justify-evenly overflow-hidden  bg-[#f8f1ff]">
             <div className=" w-3/5 flex-box justify-between gap-2 p-5 mt-[2em] z-10">
@@ -79,81 +102,54 @@ const Station = () => {
                         </h1>
                         <div className=" inline-flex">
                             <button
-                                value={day1.current.toLocaleDateString(
-                                    "zh-Hans-CN"
-                                )}
-                                onClick={(e) => {
+                                value={day1.current.toLocaleDateString("zh-Hans-CN")}
+                                onClick={() => {
                                     setDay({
                                         id: 1,
-                                        dayStamp:
-                                            day1.current.toLocaleDateString(
-                                                "zh-Hans-CN"
-                                            ),
+                                        dayStamp: day1.current.toLocaleDateString("zh-Hans-CN"),
                                         day: day1.current.getDate(),
                                         month: day1.current.getMonth(),
                                     });
                                 }}
                                 className={` border-2  border-r-0 border-violet-500 px-3 py-2 rounded-s-lg  text-md font-bold hover:bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 hover:text-white  ${
-                                    day.id === 1
-                                        ? " bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 text-white "
-                                        : null
+                                    day.id === 1 ? " bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 text-white " : null
                                 }`}
                             >
-                                {day1.current.getDate() +
-                                    " " +
-                                    getMonth(day1.current.getMonth())}
+                                {day1.current.getDate() + " " + getMonth(day1.current.getMonth())}
                             </button>
 
                             <button
-                                value={day2.current.toLocaleDateString(
-                                    "zh-Hans-CN"
-                                )}
-                                onClick={(e) =>
+                                value={day2.current.toLocaleDateString("zh-Hans-CN")}
+                                onClick={() =>
                                     setDay({
                                         id: 2,
-                                        dayStamp:
-                                            day2.current.toLocaleDateString(
-                                                "zh-Hans-CN"
-                                            ),
+                                        dayStamp: day2.current.toLocaleDateString("zh-Hans-CN"),
                                         day: day2.current.getDate(),
                                         month: day2.current.getMonth(),
                                     })
                                 }
                                 className={`border-2 border-violet-500 px-3 py-2  text-md font-bold hover:bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600  hover:text-white  ${
-                                    day.id === 2
-                                        ? " bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 text-white"
-                                        : null
+                                    day.id === 2 ? " bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 text-white" : null
                                 }`}
                             >
-                                {day2.current.getDate() +
-                                    " " +
-                                    getMonth(day2.current.getMonth())}
+                                {day2.current.getDate() + " " + getMonth(day2.current.getMonth())}
                             </button>
 
                             <button
-                                value={day3.current.toLocaleDateString(
-                                    "zh-Hans-CN"
-                                )}
-                                onClick={(e) =>
+                                value={day3.current.toLocaleDateString("zh-Hans-CN")}
+                                onClick={() =>
                                     setDay({
                                         id: 3,
-                                        dayStamp:
-                                            day3.current.toLocaleDateString(
-                                                "zh-Hans-CN"
-                                            ),
+                                        dayStamp: day3.current.toLocaleDateString("zh-Hans-CN"),
                                         day: day3.current.getDate(),
                                         month: day3.current.getMonth(),
                                     })
                                 }
                                 className={` border-2 border-l-0 border-violet-500 px-3 py-2 rounded-e-lg  text-md font-bold hover:bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 hover:text-white  ${
-                                    day.id === 3
-                                        ? " bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 text-white"
-                                        : null
+                                    day.id === 3 ? " bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 text-white" : null
                                 }`}
                             >
-                                {day3.current.getDate() +
-                                    " " +
-                                    getMonth(day3.current.getMonth())}
+                                {day3.current.getDate() + " " + getMonth(day3.current.getMonth())}
                             </button>
                         </div>
                     </div>
@@ -163,10 +159,11 @@ const Station = () => {
                             Select Slot Type
                         </h1>
                         <div className=" w-full flex-box justify-start flex-wrap gap-2">
-                            {slotData && slotData.length != 0
+                            {slotData && slotData.length !== 0
                                 ? slotData.map((slotData) => {
                                       return (
                                           <Button
+                                              key={slotData._id}
                                               value={slotData._id}
                                               onClick={(e) => {
                                                   setSlotType({
@@ -176,8 +173,7 @@ const Station = () => {
                                               }}
                                               text={slotData.type}
                                               className={
-                                                  slotType?.slotID ==
-                                                  slotData._id
+                                                  slotType?.slotID === slotData._id
                                                       ? " bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-violet-400 via-violet-600 to-sky-600 text-white"
                                                       : ""
                                               }
@@ -200,6 +196,7 @@ const Station = () => {
                             {vehicle && vehicle.length > 0
                                 ? vehicle.map((vehicle) => (
                                       <option
+                                          key={vehicle.registrationNumber}
                                           className=" bg-violet-200"
                                           value={vehicle.registrationNumber}
                                       >
@@ -209,73 +206,42 @@ const Station = () => {
                                 : null}
                         </select>
                     </div>
-
-                    <div className=" flex-box  gap-3 ">
-                        <h1 className="small-title text-lg inline-flex items-center justify-center gap-2">
-                            PickUp And Drop? (Additional 100rs)
-                        </h1>
-
-                        <input
-                            type="checkbox"
-                            onChange={(e) =>
-                                setIsPickUp(e.target.checked ? true : false)
-                            }
-                            className=" size-6 accent-violet-500 bg-violet-300"
-                        />
-                    </div>
+                  
                     {day.day == null && slotType == null ? null : (
                         <div className=" flex-box flex-col gap-3 items-start">
                             <h1 className=" small-title text-2xl inline-flex items-center justify-center gap-2">
                                 <Clock4 />
                                 Available Time Slots
                             </h1>
-                            {/* TODO: Change to Grid Layout */}
-                            <div className=" w-full  flex-box justify-start flex-wrap gap-2">
+                            <div className=" w-full flex-box justify-start flex-wrap gap-2">
                                 {slotData
-                                    .filter((e) => e._id == slotType?.slotID)
-                                    .map((e) => {
-                                        return e.availableSlot[
-                                            parseInt(day.day)
-                                        ]?.map((e2) => {
-                                            return (
-                                                <SlotType
-                                                    key={e2}
-                                                    value={e2}
-                                                    onClick={handleSlotBtnClick}
-                                                    text={getTimeSlot(e2)}
-                                                    time={time}
-                                                />
-                                            );
-                                        });
+                                    .filter((e) => e._id === slotType?.slotID)
+                                    .flatMap((e) => {
+                                        return Object.entries(e.availableSlot).map(([key, value]) => (
+                                            <SlotType
+                                                key={key}
+                                                value={key}
+                                                onClick={handleSlotBtnClick}
+                                                text={time}
+                                                time={value}
+                                            />
+                                        ));
                                     })}
                             </div>
                         </div>
                     )}
-
-                    <div className=" inline-flex gap-3">
-                        <GradientLink
-                            url={`/payment/${stationData._id}`}
-                            state={{
-                                stationData,
-                                day,
-                                time,
-                                slotType,
-                                selectedVehicle,
-                                isPickUp,
-                                amount: isPickUp ? "30000" : "20000",
-                            }}
-                            text={"Proceed to Pay"}
-                        />
-                    </div>
+                      <button
+           onClick={handleConfirmBooking}>submit</button>
                 </div>
             </div>
-
+            
             <img
                 src={grid}
                 alt="background"
                 className=" w-full h-full object-cover absolute top-[15%] "
                 draggable={false}
             />
+          
         </section>
     );
 };

@@ -235,12 +235,14 @@ const removeStation = asyncHandler(async (req, res) => {
 
 const getStationByLocation = asyncHandler(async (req, res) => {
     const { address } = req.query
+    console.log("at sts cont  "+address);
     if(address === undefined || address.trim() === ""){
         //If any of the fields are undefined or empty
         throw new apierror(400,"Please fill all the fields!")
     }
     const regex = new RegExp(`${address.toUpperCase()}`)
-    const stations = await Station.find({address:regex})
+    const stations = await Station.find({
+        station_name:address})
     if(!stations || stations.length === 0){
         //If station does not exist
         throw new apierror(404, "No Stations Found!")
@@ -294,7 +296,8 @@ const getSlotByStation = asyncHandler(async (req, res) => {
         //If station does not exist
         throw new apierror(404, "Station does not exist!")
     }
-    const slots = await Slot.find({sid: station._id})
+    const slots = await Slot.find({stationname: station_name.toUpperCase()})
+    console.log("slots  "+slots);
     if(!slots){
         //If slots does not exist
         throw new apierror(404, "No Slots Found!")

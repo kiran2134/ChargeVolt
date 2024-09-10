@@ -1,10 +1,10 @@
 import { axiosInstance } from "../axios"
-
+import axios from "axios";
 export const login = async(loginInfo)=>{
 
     try{
-
-        const {data,status} = await axiosInstance.post('/user/login',loginInfo);
+        // console.log('Sending login request:', loginInfo);
+        const {data,status} = await axios.post('http://localhost:8081/api/v1/user/login',loginInfo);
 
         if(status != 200){
             throw new Error(data);
@@ -21,8 +21,9 @@ export const login = async(loginInfo)=>{
 export const register = async(loginInfo)=>{
     
     try {
-        const { data, status } = await axiosInstance.post(
-            "/user/register",
+        console.log("login "+JSON.stringify(loginInfo));
+        const { data, status } = await axios.post(
+            "http://localhost:8081/api/v1/user/register",
             loginInfo
         );
         console.log(status);
@@ -38,7 +39,7 @@ export const register = async(loginInfo)=>{
 
 export const authLogin = async(token)=>{
     try {
-        const { data, status } = await axiosInstance.get("/user/get-user", {
+        const { data, status } = await axios.get("http://localhost:8081/api/v1/user/get-user", {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -48,6 +49,7 @@ export const authLogin = async(token)=>{
             return data.data;
         }
     } catch (e) {
-        return { success: false, message: e.response.data.data };
+        return { success: false, 
+                 message: e.response.data.data };
     }
 }

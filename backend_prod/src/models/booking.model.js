@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-//import mongoose
+const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
     uid: {
@@ -14,8 +13,8 @@ const bookingSchema = new mongoose.Schema({
             "DC-CCS2",
             "DC-CHADEMO",
             "DC-GB/T",
-            "AC-Type1",
-            "AC-Type2",
+            "AC-TYPE1",
+            "AC-TYPE2",
             "AC-IEC",
             "AC-BHARATAC001",
             "DC-BHARATDC001",
@@ -29,8 +28,7 @@ const bookingSchema = new mongoose.Schema({
         required: true,
         validate: {
             validator: function (v) {
-                return /^[a-zA-Z]{2}\d{2}[a-zA-Z]{2}\d{4}$/.test(v)
-                //Regex to validate vehicle number
+                return /^[a-zA-Z]{2}\d{2}[a-zA-Z]{2}\d{4}$/.test(v);
             },
             message: props => `${props.value} is not a valid vehicle number!`
         }
@@ -41,26 +39,21 @@ const bookingSchema = new mongoose.Schema({
     },
     bookingDate: {
         type: Date,
-        required: true
+        required: true,
+        validate: {
+            validator: function (v) {
+                return v instanceof Date && !isNaN(v);
+            },
+            message: props => `${props.value} is not a valid date!`
+        }
     },
     bookingTime: {
-        type: Number,
-        enum: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+        type: String,
+        enum: ["slot1", "slot2", "slot3", "slot4", "slot5", "slot6", "slot7", "slot8", "slot9", "slot10", "slot11", "slot12", "slot13", "slot14", "slot15", "slot16"],
         required: true
-    },
-    bookingSlotId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Slot",
-        required: true
-    },
-    pickUpNDrop: {
-        type: Boolean,
-        required: true,
-    },
-},{timestamps: true})
+    }
+},{timestamps: true});
 
-const Booking = mongoose.model("Booking", bookingSchema)
-//create slots model
+const Booking = mongoose.model("Booking", bookingSchema);
 
-module.exports = Booking
-//export slots model
+module.exports = Booking;

@@ -1,0 +1,108 @@
+[
+    {
+        "sid": "66921d751833636f467c7cbf",
+        "stationname": "TATA CHARGING SOLUTIONS",
+        "type": "DC-CCS2",
+        "availableSlot": {
+            "slot1": "2024-07-13T10:00:00Z",
+            "slot2": "2024-07-13T11:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cbf",
+        "stationname": "TATA CHARGING SOLUTIONS",
+        "type": "AC-Type2",
+        "availableSlot": {
+            "slot1": "2024-07-13T12:00:00Z",
+            "slot2": "2024-07-13T13:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc0",
+        "stationname": "GREEN LIFE",
+        "type": "DC-CHADEMO",
+        "availableSlot": {
+            "slot1": "2024-07-13T14:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc1",
+        "stationname": "MAX CHARGE",
+        "type": "DC-CCS1",
+        "availableSlot": {
+            "slot1": "2024-07-13T15:00:00Z",
+            "slot2": "2024-07-13T16:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc1",
+        "stationname": "MAX CHARGE",
+        "type": "AC-Type1",
+        "availableSlot": {
+            "slot1": "2024-07-13T17:00:00Z",
+            "slot2": "2024-07-13T18:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc2",
+        "stationname": "SPEED CHARGING SOLUTIONS",
+        "type": "AC-BHARATAC001",
+        "availableSlot": {
+            "slot1": "2024-07-13T19:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc3",
+        "stationname": "VOLVO CHARGE POINT",
+        "type": "DC-BHARATDC001",
+        "availableSlot": {
+            "slot1": "2024-07-13T20:00:00Z",
+            "slot2": "2024-07-13T21:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc3",
+        "stationname": "VOLVO CHARGE POINT",
+        "type": "HYBRID-TESLA",
+        "availableSlot": {
+            "slot1": "2024-07-13T22:00:00Z",
+            "slot2": "2024-07-13T23:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc4",
+        "stationname": "JW MARRIOTT",
+        "type": "DC-GB/T",
+        "availableSlot": {
+            "slot1": "2024-07-13T10:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    },
+    {
+        "sid": "66921d751833636f467c7cc5",
+        "stationname": "MAHINDRA FASTCHARGE",
+        "type": "DC-CCS2",
+        "availableSlot": {
+            "slot1": "2024-07-13T11:00:00Z"
+        },
+        "createdAt": "2023-01-01T00:00:00Z",
+        "updatedAt": "2023-01-01T00:00:00Z"
+    }
+]

@@ -15,33 +15,34 @@ const jwt = require('jsonwebtoken')
 
 const registerUser = asyncHandler(async (req, res) => {
     const {name,email,phone,password} = req.body
+    console.log("hello -->",name,email,phone,password);
     //Get name, email, phone and password from request body
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+   // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     //Regex to validate email
-    const phoneRegex = /^\d{10}$/
+    //const phoneRegex = /^\d{10}$/
     //Regex to validate phone number
-    const passwordRegex = /^(?=.*[a-zA-Z\d]).{8,}$/
+   // const passwordRegex = /^(?=.*[a-zA-Z\d]).{8,}$/
     //Regex to validate password
 
-    if([name,email,phone,password].some((field)=>field === undefined || typeof field != 'string' || (field?.trim() === ""))){
+    if(!name || !email || ! phone || !password){
         //If any of the fields are undefined or empty
         throw new apierror(400,"Please fill all the fields!")
     }
 
-    if(emailRegex.test(email) === false){
-        //If email is invalid
-        throw new apierror(400,"Please enter a valid email!")
-    }
+    // if(emailRegex.test(email) === false){
+    //     //If email is invalid
+    //     throw new apierror(400,"Please enter a valid email!")
+    // }
 
-    if(phoneRegex.test(phone) === false){
-        //If phone number is invalid
-        throw new apierror(400,"Please enter a valid phone number!")
-    }
+    // if(phoneRegex.test(phone) === false){
+    //     //If phone number is invalid
+    //     throw new apierror(400,"Please enter a valid phone number!")
+    // }
 
-    if(passwordRegex.test(password) === false){
-        //If password is invalid
-        throw new apierror(400,"Please enter a valid password!")
-    }
+    // if(passwordRegex.test(password) === false){
+    //     //If password is invalid
+    //     throw new apierror(400,"Please enter a valid password!")
+    // }
 
     const Useralreadyexists = await User.findOne({
         //Check if user already exists
@@ -273,6 +274,7 @@ const changePassword = asyncHandler(async (req, res) => {
 })
 
 const getUserVehicle = asyncHandler(async (req, res) => {
+    console.log("at user cont  "+req.user);
     const vehicle = await Vehicle.find({uid: req.user._id})
     //Find vehicle by id
     if(vehicle === undefined || vehicle.length === 0){
@@ -290,6 +292,8 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 const addVehicle = asyncHandler(async (req, res) => {
     const {registrationNum, company} = req.body
+
+    console.log(registrationNum,company)
     //Get registration number from request body
     const vehicleRegex = /^[a-zA-Z]{2}\d{2}[a-zA-Z]{2}\d{4}$/
     //Regex to validate vehicle number

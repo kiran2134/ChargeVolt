@@ -1,15 +1,19 @@
-const mongoose = require('mongoose')
-//Import Mongoose
+const mongoose = require("mongoose")
 
-const connectDB = async () => {
-    try {
-        const dbconninstance = await mongoose.connect(`${process.env.MONGO_URL}/${process.env.DB_NAME}`)
-        //Connect to MongoDB
-        console.log(`Database Connection has been Established! DBHOST: ${dbconninstance.connection.host }`)
-    } catch (error) {
-        console.error("Failed to connect to Database! :",error)
-        process.exit(1)
-    }
-}
+require("dotenv").config();
 
-module.exports= connectDB
+const dbConnect = () => {
+    mongoose.connect("mongodb://localhost:27017/miniproject",
+
+    
+   )
+   .then(()=>console.log("success connected") )
+   .catch((error)=>{
+    console.log("Issue in DB Connection ");
+       console.log(error.message);
+       process.exit(1);
+   });
+
+}   
+
+module.exports = dbConnect;

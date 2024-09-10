@@ -37,7 +37,7 @@ const Navbar = () => {
                         alt=""
                         className=" h-[3rem]  object-cover"
                     />
-                    <h1 className=" text-2xl font-bold">SparkCharge</h1>
+                    <h1 className=" text-2xl font-bold">ChargeVolt</h1>
                 </div>
                 <ul className="flex-box gap-8 col-span-1 ">
                     <li>

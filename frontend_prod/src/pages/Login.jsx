@@ -62,7 +62,7 @@ const Login = () => {
         e.preventDefault();
 
         const registerResponse = await register(logInCredentials);
-        console.log({ registerResponse });
+        // console.log({ registerResponse });
         if (registerResponse.success == false) {
             context.setLoading(false);
             return setError({

@@ -3,13 +3,13 @@ import Container from '../components/Container'
 import { getUserBookings } from '../api/GET'
 import { getTimeSlot } from '../utils/helper'
 import { Fuel } from 'lucide-react'
-
+import {cancelBooking} from '../api/POST';
 import blob from '../assets/blur.svg'
 import ProtectedRoute from '../components/utils/ProtectedRoute'
 import Title from '../components/Title'
 
 const UserBooking = () => {
-
+    
     const [bookingData,setBookingData] = useState(null)
     const [loading,setLoading] = useState(true)
     useEffect(()=>{
@@ -18,13 +18,15 @@ const UserBooking = () => {
             const res = await getUserBookings();
             if(res.success){
                 setBookingData(res.booking.reverse())
+                console.log(res.booking);
             }
             setLoading(false)
         }    
 
         fetchBookings()
     },[])
-
+    
+  
     if(loading){
         return <div>Loading</div>
     }
@@ -54,8 +56,28 @@ export default UserBooking
 
 const BookingCard = ({bookingData})=>{
     console.log(bookingData);
-    return (
-        <div className=" flex-box flex-col relative rounded-xl  text-white bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-violet-500 via-indigo-500 to-purple-600 shadow-lg group">
+    const [del,setdel]=useState(false);
+    const handlecancleBooking = async(id) => {
+       // e.preventDefault();
+        const bookingDetails = {
+            bookingId :id
+        };
+        const {data,status} = await cancelBooking(bookingDetails);
+        console.log(data,status);
+        if(status==200){
+            console.log("Booking confirmed with details:", bookingDetails);
+            alert("Booking  cancled!");
+            setdel(true);
+        }
+        else{
+            alert("Canclation failed!");
+        }
+    };
+    function handle(id){
+        handlecancleBooking(id);
+    } 
+    return (<>
+       {!del && <div className=" flex-box flex-col relative rounded-xl  text-white bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-violet-500 via-indigo-500 to-purple-600 shadow-lg group">
             <div className="flex-box px-3 py-5 rounded-md gap-3">
                 <Fuel size={40} />
                 <h1 className=" text-xl font-bold text-white ">
@@ -85,9 +107,10 @@ const BookingCard = ({bookingData})=>{
                     ) : null}
                 </div>
             </div>
-            <button className=" px-3 py-2 bottom-3  hover:text-white font-semibold rounded-md absolute text-sm bg-red-500 duration-300 ">
+            <button className=" px-3 py-2 bottom-3  hover:text-white font-semibold rounded-md absolute text-sm bg-red-500 duration-300 " onClick={()=>{handle(bookingData._id)}}>
                 Cancel Booking
             </button>
-        </div>
+        </div>}
+        </>
     );
 }

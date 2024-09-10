@@ -6,15 +6,9 @@ const app = require("./app.js")
 //Import Express App
 db_conn()
 //Establish Database Connection
-.then(() => {
-    app.listen(process.env.PORT || 8081, () => {
+
+
+app.listen(8081, () => {
     //Start Express Server
-        console.log(`Server listening at PORT ${process.env.PORT}`)
+        console.log(`Server listening at PORT 8081`)
     })
-})
-.catch((err) => {
-//Catch Database Connection Error
-    console.log("Database Connection Failed!")
-    console.log(err)
-    process.exit(1)
-});

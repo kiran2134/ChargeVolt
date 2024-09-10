@@ -14,11 +14,11 @@ const { verifyJWT } = require('../middlewares/auth.middleware.js')
 const Router = require('express').Router
 //Import Express Router
 const router = Router()
-//Create Router
+//Crearouter.route("/get-booking").get(verifyJWT, getUserBooking)te Router
 
 router.route("/get-booking").get(verifyJWT, getUserBooking)
 //Get Booking Secure Route
-router.route("/reserve").post(verifyJWT, reserve, razorpaygenorder)
+router.route("/reserve").post(verifyJWT, reserve)
 //Booking Secure Route
 router.route("/cancel-reservation").post(verifyJWT, cancelReservation)
 //Cancel Booking Secure Route

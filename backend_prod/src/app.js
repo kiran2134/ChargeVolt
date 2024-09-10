@@ -13,9 +13,9 @@ const cron = require('node-cron')
 const cronjob = require('./utils/cronjob.js')
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: "*",
     //Origin of Request
-    credentials: true
+    //credentials: true
 }))
 app.use(express.json({
 //Express Body Parser with limit
@@ -44,13 +44,16 @@ cron.schedule('15 0 * * *', () => {
 const userRouter = require("./routes/user.routes.js")
 const stationRouter = require("./routes/station.routes.js")
 const bookingRouter = require("./routes/booking.routes.js")
-const transactionRouter = require("./routes/transaction.routes.js")
+//const transactionRouter = require("./routes/transaction.routes.js")
 //Import User, Station, Booking Routes from user.routes.js
 
 app.use("/api/v1/user", userRouter)
 app.use("/api/v1/station", stationRouter)
 app.use("/api/v1/booking", bookingRouter)
-app.use("/api/v1/transaction", transactionRouter)
+app.get("/",(req,res)=>{
+    res.send("Hello World")
+})
+//app.use("/api/v1/transaction", transactionRouter)
 //Routes Declaration
 
 module.exports = app

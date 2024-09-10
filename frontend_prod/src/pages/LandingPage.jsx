@@ -182,7 +182,7 @@ const LandingPage = () => {
                         <h1 className=" relative small-title  ">
                             Why Choose{" "}
                             <span className=" text-violet-500">
-                                SparkCharge
+                                ChargeVolt
                             </span>
                             ?
                         </h1>
@@ -260,7 +260,7 @@ const LandingPage = () => {
                     <div className=" w-full relative overflow-hidden bg-violet-600 shadow-xl text-3xl grid grid-cols-4 grid-rows-4 mt-[10rem] rounded-2xl">
                         <div className="z-10  bg-[#2c06794d] backdrop-blur-md  col-span-1 gap-5 row-span-1 w-full flex-box  flex-col p-[1.5em]">
                             <h1 className=" text-violet-100 font-semibold">
-                                Pune
+                                Hyderabad
                             </h1>
                         </div>
                         <div className="z-10 shadow-xl bg-[#2c06794d] backdrop-blur-md rounded-b-2xl col-span-1 gap-5 row-span-1 w-full flex-box  flex-col p-[1.5em]">
@@ -270,7 +270,7 @@ const LandingPage = () => {
                         </div>
                         <div className="z-10 shadow-xl bg-[#2c06794d] backdrop-blur-md rounded-b-2xl col-span-1 gap-5 row-span-2 w-full flex-box  flex-col p-[1.5em]">
                             <h1 className=" text-violet-100 font-semibold">
-                                Satara
+                                Banglore
                             </h1>
                         </div>
                         <div className="z-10 shadow-xl bg-[#2c06794d] backdrop-blur-md rounded-b-2xl col-span-1 gap-5 row-span-1 w-full flex-box  flex-col p-[1.5em]">
@@ -280,12 +280,12 @@ const LandingPage = () => {
                         </div>
                         <div className="z-10 shadow-xl bg-[#2c06794d] backdrop-blur-md rounded-b-2xl col-span-1 gap-5 row-span-1 w-full flex-box  flex-col p-[1.5em]">
                             <h1 className=" text-violet-100 font-semibold">
-                                Patna
+                                Amaravathi
                             </h1>
                         </div>
                         <div className="z-10 w-full flex-box text-center  col-span-4 row-span-2 ">
                             <h1 className=" font-bold text-7xl text-white">
-                                CITIES WE EXIST
+                                CITIES WE SERVICE
                             </h1>
                         </div>
                         <img

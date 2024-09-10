@@ -60,6 +60,7 @@ const StationsSearchPage = () => {
 
     const handleFormSubmit = async () => {
         const searchLocation = locationNameRef.current.value;
+        console.log("sl  "+searchLocation)
         const res = await getStationByLocation(
             searchLocation,
             localStorage.getItem("accessToken")
@@ -70,6 +71,7 @@ const StationsSearchPage = () => {
         );
         if (res.success) {
             // extend(latLang)
+            //console.log("in ssp  "+JSON.stringify(res.stationData.data));
             context.SEARCH_STATION_DISPATCH({
                 type: searchStationAction.ADD_DATA,
                 payload: res.stationData.data,
@@ -81,6 +83,7 @@ const StationsSearchPage = () => {
             });
         }
         const bounds = new window.google.maps.LatLngBounds(latLang);
+        console.log("bounds  "+bounds);
         var zoom = map.getZoom();
         map.setZoom(11);
         setLocation(latLang);
@@ -145,20 +148,8 @@ const StationsSearchPage = () => {
                                 </button>
                             </div>
                         </Form>
-                        <h1 className=" text-2xl font-bold self-start text-zinc-900">
-                            Charger Type:
-                        </h1>
-                        <div className=" w-full justify-start flex-box gap-5">
-                            <button className=" p-2 text-md font-semibold rounded-2xl border-2 border-violet-500">
-                                Type A
-                            </button>
-                            <button className=" p-2 text-md font-semibold rounded-2xl border-2 border-violet-500">
-                                Type A
-                            </button>
-                            <button className=" p-2 text-md font-semibold rounded-2xl border-2 border-violet-500">
-                                Type A
-                            </button>
-                        </div>
+                        
+                        
                     </div>
                 </div>
 
